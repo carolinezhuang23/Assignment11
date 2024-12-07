@@ -70,26 +70,41 @@ class Node:
 
 
 class StackError(Exception):
+    """
+    StackError
+    """
     pass
 
 
 class Stack:
+    """
+    Represents Stack
+    """
     def __init__(self):
         self._top = None
         self._size = 0
 
     def peek(self):
+        """
+        Returns most recent value pushed on to stack
+        """
         if self.is_empty():
             raise StackError("Peek from empty stack.")
         return self._top.data
 
     def push(self, item):
+        """
+        Adds item to stack
+        """
         new_node = Node(item)
         new_node.next = self._top
         self._top = new_node
         self._size += 1
 
     def pop(self):
+        """
+        Removes item from stack using LIFO
+        """
         if self.is_empty():
             raise StackError("Pop from empty stack.")
         removed_data = self._top.data
@@ -98,13 +113,22 @@ class Stack:
         return removed_data
 
     def is_empty(self):
+        """
+        Checks if stack is empty
+        """
         return self._top is None
 
     def size(self):
+        """
+        Returns size of stack
+        """
         return self._size
 
 
 class QueueError(Exception):
+    """
+    Queue Error
+    """
     pass
 
 
@@ -389,8 +413,6 @@ def create_graph(data):
     # return the ImageGraph, starting position, and color as a tuple in this order.
     return graph, start_index, target_color
 
-
-# TODO: Modify this function. You may delete this comment when you are done.
 def main():
     """
     The main function that drives the program execution.
@@ -403,7 +425,7 @@ def main():
     data = sys.stdin.read()
 
     # create graph, passing in data
-    graph = create_graph(data)[0]    
+    graph = create_graph(data)[0]
     start_index = create_graph(data)[1]
     target_color = create_graph(data)[2]
 
@@ -414,7 +436,7 @@ def main():
     # run bfs
     graph.bfs(start_index, target_color)
     # reset by creating graph again
-    graph = create_graph(data)[0]    
+    graph = create_graph(data)[0]
     start_index = create_graph(data)[1]
     target_color = create_graph(data)[2]
     # run dfs
